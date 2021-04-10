@@ -1,0 +1,52 @@
+version: "1.0.0"
+variant: fcos
+storage:
+  directories:
+    - path: /usr/local/sbin/actions-runner
+      mode: 0755
+      user:
+        name: core
+      group:
+        name: core
+  files:
+    - path: /usr/local/sbin/actions-runner/actions-runner-linux.tar.gz
+      overwrite: true
+      contents:
+        source: https://github.com/actions/runner/releases/download/v2.277.1/actions-runner-linux-x64-2.277.1.tar.gz
+      mode: 0755
+      user:
+        name: core
+      group:
+        name: core
+systemd:
+  units:
+    - name: github-runner-configure.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Configure the github action runner for a repository
+        After=network-online.target boot-complete.target
+        Requires=boot-complete.target
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        User=core
+        WorkingDirectory=/usr/local/sbin/actions-runner
+        ExecStartPre=tar xvf actions-runner-linux.tar.gz --no-same-owner
+        ExecStart=/usr/local/sbin/actions-runner/config.sh --url https://github.com/[github-alias]/[repo] --token [alpha-numeric-token] --labels fcos --unattended
+
+        [Install]
+        WantedBy=multi-user.target
+    - name: github-runner.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Run the github action runner
+        After=github-runner-configure.service
+        [Service]
+        WorkingDirectory=/usr/local/sbin/actions-runner
+        User=core
+        ExecStart=/usr/local/sbin/actions-runner/run.sh
+        [Install]
+        WantedBy=multi-user.target
+
