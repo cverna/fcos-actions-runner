@@ -1,6 +1,6 @@
 # Fedora CoreOS Github Actions Runner
 
-This repository contains an [Butane](https://github.com/coreos/butane) configuration file that can be used to provition a Fedora CoreOS Github Action Runner.
+This repository contains a [Butane](https://github.com/coreos/butane) configuration file that can be used to provition a Fedora CoreOS Github Action Runner.
 
 ## How to use
 
@@ -20,7 +20,7 @@ Edit config.yaml to replace :
 Once you have edited the file, use butane to create the ignition configuration
 
 ```
-$ butane config.yaml -o config.ignition
+$ podman run -i --rm quay.io/coreos/butane:release --pretty --strict < config.yaml > config.ignition
 ```
 
 Finally you can use config.ignition to provision an fcos instance on the supported [platforms](https://docs.fedoraproject.org/en-US/fedora-coreos/bare-metal/)
