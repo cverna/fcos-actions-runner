@@ -1,4 +1,4 @@
-version: "1.0.0"
+version: "1.3.0"
 variant: fcos
 storage:
   directories:
@@ -13,6 +13,14 @@ storage:
       overwrite: true
       contents:
         source: https://github.com/actions/runner/releases/download/v2.277.1/actions-runner-linux-x64-2.277.1.tar.gz
+      mode: 0755
+      user:
+        name: core
+      group:
+        name: core
+    - path: /usr/local/sbin/actions-runner/manage-runner.sh
+      contents:
+        local: manage-runner.sh
       mode: 0755
       user:
         name: core
@@ -33,7 +41,7 @@ systemd:
         User=core
         WorkingDirectory=/usr/local/sbin/actions-runner
         ExecStartPre=tar xvf actions-runner-linux.tar.gz --no-same-owner
-        ExecStart=/usr/local/sbin/actions-runner/config.sh --url https://github.com/[github-alias]/[repo] --token [alpha-numeric-token] --labels fcos --unattended
+        ExecStart=/usr/local/sbin/actions-runner/manage-runner.sh
 
         [Install]
         WantedBy=multi-user.target
