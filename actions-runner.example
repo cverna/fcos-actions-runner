@@ -1,0 +1,3 @@
+GITHUB_USER=<user>
+GITHUB_REPO=<repo>
+GITHUB_TOKEN=<personal_access_token> 

@@ -1,2 +1,4 @@
 config.ignition
-manage-runner.sh
+actions-runner
+*.qcow2
+*.xz

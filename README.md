@@ -4,15 +4,15 @@ This repository contains a [Butane](https://github.com/coreos/butane) configurat
 
 ## How to use
 
-First clone this repository and make a copy of config.yaml.example.
+First clone this repository and make a copy of actions-runner.example.
 
 ```
 $ git clone https://github.com/cverna/fcos-actions-runner
 $ cd fcos-actions-runner
-$ cp manage-runner.sh.example manage-runner.sh
+$ cp actions-runner.example actions-runner.sh
 ```
 
-Edit manage-runner.sh to set the following variables
+Edit actions-runner to set the following variables
   * GITHUB_USER: Your github username
   * GITHUB_REPO: Repository the runner will be configured to.
   * GITHUB_TOKEN: GitHub personal access token with the `repo` permission [docs](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)

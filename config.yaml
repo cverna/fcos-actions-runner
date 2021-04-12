@@ -26,6 +26,14 @@ storage:
         name: core
       group:
         name: core
+    - path: /etc/actions-runner
+      contents:
+        local: actions-runner
+      mode: 0700
+      user:
+        name: core
+      group:
+        name: core
 systemd:
   units:
     - name: github-runner-configure.service
@@ -36,6 +44,7 @@ systemd:
         After=network-online.target boot-complete.target
         Requires=boot-complete.target
         [Service]
+        EnvironmentFile=/etc/actions-runner
         Type=oneshot
         RemainAfterExit=yes
         User=core
