@@ -12,7 +12,7 @@ storage:
     - path: /usr/local/sbin/actions-runner/actions-runner-linux.tar.gz
       overwrite: true
       contents:
-        source: https://github.com/actions/runner/releases/download/v2.277.1/actions-runner-linux-x64-2.277.1.tar.gz
+        source: https://github.com/actions/runner/releases/download/v2.278.0/actions-runner-linux-x64-2.278.0.tar.gz
       mode: 0755
       user:
         name: core
