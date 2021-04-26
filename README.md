@@ -9,7 +9,7 @@ First clone this repository and make a copy of actions-runner.example.
 ```
 $ git clone https://github.com/cverna/fcos-actions-runner
 $ cd fcos-actions-runner
-$ cp actions-runner.example actions-runner.sh
+$ cp actions-runner.example actions-runner
 ```
 
 Edit actions-runner to set the following variables
